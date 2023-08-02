@@ -2,7 +2,7 @@
 
 ## 1. システム構成図
 
-![](../images/README_image230731_061205.png)
+![](/images/handson-aws-system-configuration-diagram.drawio.png)
 
 ## 2. 環境構築
 

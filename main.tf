@@ -1,13 +1,12 @@
 # -----------------------------
 # Terraform configuration
 # -----------------------------
-
 terraform {
-  required_version = var.terraform_version
+  required_version = ">=0.13"
   required_providers {
     aws = {
-      source  = "${var.aws_provider_source}"
-      version = "${var.aws_provider_version}"
+      source  = "hashicorp/aws"
+      version = "~>3.0"
     }
   }
 }

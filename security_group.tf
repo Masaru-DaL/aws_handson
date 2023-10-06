@@ -19,6 +19,7 @@ resource "aws_security_group_rule" "web_server_in_ssh" {
   protocol          = "tcp"
   from_port         = 22
   to_port           = 22
+  description = "from Cloud9"
 
   // 起動後にCloud9のIPアドレスを指定する必要がある。
   cidr_blocks = [
@@ -33,6 +34,7 @@ resource "aws_security_group_rule" "web_server_in_http" {
   protocol          = "tcp"
   from_port         = 80
   to_port           = 80
+  description = "from Proxy Server"
 
   cidr_blocks = [
     # Proxy Server Private IP Address
@@ -46,6 +48,7 @@ resource "aws_security_group_rule" "web_server_in_https" {
   protocol          = "tcp"
   from_port         = 443
   to_port           = 443
+  description = "from Proxy Server"
 
   cidr_blocks = [
     # Proxy Server Private IP Address
@@ -90,7 +93,6 @@ resource "aws_security_group_rule" "cloud9_in_ssh" {
   ]
 }
 
-# 手動で割り当てる必要がある
 resource "aws_security_group_rule" "cloud9_out_all" {
   security_group_id = aws_security_group.cloud9_sg.id
   type              = "egress"
@@ -121,6 +123,7 @@ resource "aws_security_group_rule" "windows_client_in_rdp" {
   protocol          = "tcp"
   from_port         = 3389
   to_port           = 3389
+  description = "from My Client"
 
   cidr_blocks = [
     # Client Public IP Address
@@ -158,6 +161,7 @@ resource "aws_security_group_rule" "dns_server_in_ssh" {
   protocol          = "tcp"
   from_port         = 22
   to_port           = 22
+  description = "from Cloud9"
 
   cidr_blocks = [
     # Cloud9 Public IP Address
@@ -171,6 +175,8 @@ resource "aws_security_group_rule" "dns_server_in_dns_tcp" {
   protocol          = "tcp"
   from_port         = 53
   to_port           = 53
+  description = "from Proxy Server"
+
   cidr_blocks = [
     # Proxy Server Private IP Address
     "${var.private_ip_proxy_server}/32",
@@ -183,6 +189,8 @@ resource "aws_security_group_rule" "dns_server_in_dns_udp" {
   protocol          = "udp"
   from_port         = 53
   to_port           = 53
+  description = "from Proxy Server"
+
   cidr_blocks = [
     # Proxy Server Private IP Address
     "${var.private_ip_proxy_server}/32",
@@ -219,6 +227,7 @@ resource "aws_security_group_rule" "proxy_server_in_ssh" {
   protocol          = "tcp"
   from_port         = 22
   to_port           = 22
+  description = "from Cloud9"
 
   cidr_blocks = [
     # Cloud9 Public IP Address
@@ -233,6 +242,7 @@ resource "aws_security_group_rule" "proxy_server_in_http" {
   protocol          = "tcp"
   from_port         = 8080
   to_port           = 8080
+  description = "from Windows Client"
 
   cidr_blocks = [
     # Windows Client Private IP Address
@@ -246,6 +256,7 @@ resource "aws_security_group_rule" "proxy_server_in_https" {
   protocol          = "tcp"
   from_port         = 443
   to_port           = 443
+  description = "from Windows Client"
 
   cidr_blocks = [
     # Windows Client Private IP Address

@@ -1,22 +1,4 @@
 # -----------------------------
-# Provider
-# -----------------------------
-variable "terraform_version" {
-  description = "Terraform version"
-  type        = string
-}
-
-variable "aws_provider_source" {
-  description = "AWS provider source"
-  type        = string
-}
-
-variable "aws_provider_version" {
-  description = "AWS provider version"
-  type        = string
-}
-
-# -----------------------------
 # Variables
 # -----------------------------
 variable "project" {

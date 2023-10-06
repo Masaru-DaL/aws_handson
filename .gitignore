@@ -45,8 +45,11 @@ terraform.rc
 /s3_upload
 /user_data
 /keys
+/project_files
 
 # -----------------------------
 # Secret files
 # -----------------------------
+.DS_Store
 data.tf
+review.md

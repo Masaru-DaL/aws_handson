@@ -40,7 +40,7 @@ resource "aws_s3_bucket_versioning" "s3_versioning" {
 
 # ローカル値を定義する
 locals {
-  s3_upload_dir = "${path.module}${var.s3_upload_dir}"
+  s3_upload_dir = "${path.module}/s3_upload"
 }
 
 # /src/uploadディレクトリ内の全てのファイルを検出し、それぞれに対してlocal_fileデータソースを作成する
@@ -56,8 +56,7 @@ resource "aws_s3_bucket_object" "file_object" {
   source   = each.value.filename
   acl      = "private"
 
-  # Destroy時にオブジェクトを削除しない
   lifecycle {
-    prevent_destroy = true
+    prevent_destroy = false
   }
 }

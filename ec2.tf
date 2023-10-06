@@ -95,6 +95,7 @@ resource "aws_instance" "proxy_server" {
 # -----------------------------
 resource "aws_cloud9_environment_ec2" "cloud9_environment" {
   name                        = "${var.project}-${var.environment}-cloud9-ec2"
+  description = "for Bastion Server"
   instance_type               = var.instance_type
   subnet_id                   = aws_subnet.public_subnet.id
   owner_arn                   = "arn:aws:iam::${var.project_account_id}:user/${var.project}"
